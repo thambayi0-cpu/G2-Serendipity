@@ -37,6 +37,9 @@ void cashier()
 	cout << "Enter price: ";
 	cin >> price;
 
+	if (title.size() > TITLE_WIDTH)
+		title = title.substr(0, 34) + "[…]";
+
 	subTotal = price*qty;
 	tax = subTotal*0.06;
 	total = subTotal+tax;
