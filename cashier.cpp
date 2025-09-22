@@ -34,11 +34,29 @@ void cashier()
 	getline(cin, isbn);
 	cout << "Enter quantity: ";
 	cin >> qty;
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Invalid. Please enter the quantity: ";
+		cin >> qty;
+	}
 	cout << "Enter price: ";
 	cin >> price;
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Invalid. Please enter the price: ";
+		cin >> price;
+	}
 
 	if (title.size() > TITLE_WIDTH)
-		title = title.substr(0, 34) + "[…]";
+		title = title.substr(0, TITLE_WIDTH - 3) + "[…]";
+	if (isbn.size() > ISBN_WIDTH)
+		isbn = isbn.substr(0, ISBN_WIDTH);
+	if (date.size() > 10)
+		date = date.substr(0, 10);
 
 	subTotal = price*qty;
 	tax = subTotal*0.06;
