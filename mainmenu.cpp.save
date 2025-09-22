@@ -18,12 +18,9 @@ int main()
 	// Constants
 	const string INPUT_PROMPT     = "Enter Your Choice: ";
 	const string INPUT_PRINT      = "You selected item ";
-	const short  INPUT_PRINT_FILL = 44;
+	const short  INPUT_PRINT_FILL = 43;
 	const string INVALID_INPUT    = "Invalid input. Enter a number range 1 - 4.";
 	const string CLEAR_SCREEN     = "\033[H\033[2J";
-	const string NOCOLOR          = "\033[0m";
-	const string RED              = "\033[31m";
-	const string GREEN            = "\033[32m";
 
 
 	// Variables
@@ -31,7 +28,7 @@ int main()
 	string         endOfProgramString;         // OUT  - end of program statement
 	string         printMainMenuStr;
 	char           choice;
-	string			choiceString;
+	string         choiceString;
 	bool           invalidInputBool;
 	bool				keepActive;
 	short          inputPrintHeight;
@@ -84,25 +81,14 @@ int main()
 		do
 		{
 			cout << inputPromptStr;
-			getline(cin, choiceString);
-
-			while (!choiceString.empty()        &&
-				   ( choiceString.back() == '\r' ||
-					  choiceString.back() == '\n' ||
-					  choiceString.back() == '\t' ||
-					  choiceString.back() == ' '  ))
+			cin.getline(choiceString);
+			if()
 			{
-				choiceString.pop_back();
-			}
-
-			if(choiceString.size() == 1 && choiceString[0] >= '1' && choiceString[0] <= '4')
-			{
-				choice = choiceString[0];
-				invalidInputBool = false;
+				cout << CLEAR_SCREEN << headingString << printMainMenuStr << inputPromptStr << invalidInputStr;
 			}
 			else
 			{
-				cout << CLEAR_SCREEN << headingString << printMainMenuStr << inputPromptStr << RED << invalidInputStr << NOCOLOR;
+				invalidInputBool = false;
 			}
 
 		} while (invalidInputBool);
@@ -110,20 +96,20 @@ int main()
 		switch (choice)
 		{
 			case '1':
-				cout << GREEN << inputPrintStr << choice << "." << NOCOLOR;
+				cout << inputPrintStr << choice << ".";
 				break;
 			case '2':
-				cout << GREEN << inputPrintStr << choice << "." << NOCOLOR;
+				cout << inputPrintStr << choice << ".";
 				break;
 			case '3':
-				cout << GREEN << inputPrintStr << choice << "." << NOCOLOR;
+				cout << inputPrintStr << choice << ".";
 				break;
 			case '4':
-				cout << GREEN << inputPrintStr << choice << "." << NOCOLOR;
+				cout << inputPrintStr << choice << ".";
 				keepActive = false;
 				break;
 			default:
-				cout << RED << invalidInputStr << NOCOLOR;
+				cout << invalidInputStr;
 				break;
 		}
 
