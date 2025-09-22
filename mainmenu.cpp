@@ -10,7 +10,7 @@
 * DUE DATE      : 09/23/2025
 ****************************************************************************/
 
-#include "mainmenu_header.h"
+#include "format.h"
 
 
 int main()
@@ -111,6 +111,7 @@ int main()
 		{
 			case '1':
 				cout << GREEN << inputPrintStr << choice << "." << NOCOLOR;
+				cashier();
 				break;
 			case '2':
 				cout << GREEN << inputPrintStr << choice << "." << NOCOLOR;
