@@ -1,0 +1,126 @@
+/***************************************************************************
+* PROGRAMMED BY : Ahmer Yasin & Thokozile Hambayi
+* ID            : A00349012   & 127485
+* CLASS         : CS1B
+* SECTION       : TTh 1:30pm
+* MODULE        : 2
+* GROUP PROJECT : 2
+* PROGRAM NAME  : Menus (Navigation & Stubs)
+* PURPOSE       : Bookstore POS
+* DUE DATE      : 09/23/2025
+****************************************************************************/
+
+#include "mainmenu_header.h"
+
+
+int main()
+{
+	// Constants
+	const string INPUT_PROMPT     = "Enter Your Choice: ";
+	const string INPUT_PRINT      = "You selected item ";
+	const short  INPUT_PRINT_FILL = 43;
+	const string INVALID_INPUT    = "Invalid input. Please try again.";
+	const string CLEAR_SCREEN     = "\033[H\033[2J";
+
+
+	// Variables
+	string         headingString;              // OUT  - class heading
+	string         endOfProgramString;         // OUT  - end of program statement
+	string         printMainMenuStr;
+	int            choiceInt;
+	char           choice;
+	bool           invalidInputBool;
+	bool				keepActive;
+	short          inputPrintHeight;
+	short          inputPrintRow;
+   short          inputPromptHeight;
+	short          inputPromptRow;
+	ostringstream  inputPrompt;
+	string         inputPromptStr;
+	ostringstream  inputPrint;
+	string         inputPrintStr;
+	ostringstream  invalidInput;
+	string			invalidInputStr;
+
+
+	// INITIALIZATIONS
+	headingString      = OutputClassHeading();
+	endOfProgramString = EndOfProgramBanner();
+	printMainMenuStr   = PrintMainMenu();
+	keepActive         = true;
+	cbreak();
+	inputPrintHeight   = 19;
+	inputPrintRow      = 27;
+   inputPromptHeight  = 19;
+	inputPromptRow     = 25;
+	inputPrompt        << "\033[" << inputPromptRow << ";" << inputPromptHeight << "H" << setfill(' ') << setw(INPUT_PROMPT.length())
+							 << "\033[" << inputPromptRow << ";" << inputPromptHeight << "H" << INPUT_PROMPT;
+	inputPromptStr     = inputPrompt.str();
+	inputPrint         << "\033[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
+							 << "\033[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INPUT_PRINT;
+	inputPrintStr      = inputPrint.str();
+	invalidInput       << "\033[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
+							 << "\033[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INVALID_INPUT;
+	invalidInputStr    = invalidInput.str();
+
+
+	// Clear Screen
+	cout << CLEAR_SCREEN;
+
+
+	// OUTPUT HEADING - Class heading output
+	cout << headingString;
+
+
+	// INPUT - Main Menu Display
+	cout << printMainMenuStr;
+
+	// INPUT - Main Menu Input Prompt for "Choice"
+	do
+	{
+		cout << inputPromptStr;
+		do
+		{
+			
+			if(choiceInt > 1 && choiceInt > 4)
+			{
+				
+			}
+		} while (invalidInputBool);
+
+		choice = char(choiceInt);
+		switch (choice)
+		{
+			case '1':
+				cout << inputPrintStr << choice << ".";
+				break;
+			case '2':
+				cout << inputPrintStr << choice << ".";
+				break;
+			case '3':
+				cout << inputPrintStr << choice << ".";
+				break;
+			case '4':
+				cout << inputPrintStr << choice << ".";
+				keepActive = false;
+				break;
+			default:
+				cout << invalidInputStr;
+				break;
+		}
+
+	} while (keepActive);
+
+
+
+	// PROCESSING
+
+	// OUTPUT
+
+
+
+	// OUTPUT - End of Program Banner
+	cout << endl << endl << endl << endl << endOfProgramString  << endl << endl;
+	return 0;
+}
+

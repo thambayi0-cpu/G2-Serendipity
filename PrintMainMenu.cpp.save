@@ -1,0 +1,66 @@
+#include "mainmenu_header.h"
+
+/******************************************************************************
+* FUNCTION PrintMainMenu
+*******************************************************************************/
+
+string PrintMainMenu()
+
+{
+/***************************************************************************
+* CONSTANTS
+****************************************************************************/
+ const string VERTICAL_BORDER     = "\u2500";
+ const string HORIZONTAL_BORDER   = "\u2502";
+ const string TOP_LEFT_BORDER     = "\u250C";
+ const string TOP_RIGHT_BORDER    = "\u2510";
+ const string BOTTOM_LEFT_BORDER  = "\u2514";
+ const string BOTTOM_RIGHT_BORDER = "\u2518";
+
+/***************************************************************************
+* VARIABLES
+****************************************************************************/
+ostringstream out;           // ASGN & OUT - variable to assign output string
+string        topBotStr;     // ASGN & OUT - top/bottom character string
+
+//
+for(int i = 0; i < 61; i++)
+{
+	 topBotStr += VERTICAL_BORDER;
+}
+
+
+
+// Sets justification left
+out << left;
+
+// OUTPUTS  end of program banner
+
+//Top border
+out << endl << endl << TOP_LEFT_BORDER << topBotStr << TOP_RIGHT_BORDER << endl;
+
+//
+out << HORIZONTAL_BORDER << setfill(' ') << setw(64) << right << HORIZONTAL_BORDER;
+out << endl;
+out << HORIZONTAL_BORDER << setfill(' ') << setw(64) << right << HORIZONTAL_BORDER;
+out << endl;
+
+
+//Bottom border
+out << topBotStr;
+
+//Spacing
+out << endl;
+
+//Reset justification
+out << right;
+
+//Returns output as a string
+return out.str();
+}
+
+
+
+
+
+
