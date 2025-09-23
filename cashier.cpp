@@ -102,5 +102,9 @@ void cashier()
 
 	printDash();
 
+	cout << "PRESS ENTER TO CONTINUE";
+
+	cin.get();
+
 	return;
 }
