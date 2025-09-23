@@ -31,9 +31,9 @@ int invMenu (bool &keepInvMenuActive)
 	// Variables
 	string         headingString;              // OUT  - class heading
 	string         endOfProgramString;         // OUT  - end of program statement
-	string         printInvMenuString;
-	char           choice;
-	string			choiceString;
+	string         printInvMenuString;         // OUT  - inventory menu print
+	char           choice;                     // PROC - choice switch selection
+	string			choiceString;      // IN   - input
 	bool           invalidInputBool;
 	short          inputPrintHeight;
 	short          inputPrintRow;

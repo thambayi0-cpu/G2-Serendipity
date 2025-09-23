@@ -33,53 +33,67 @@ int main()
 	// Variables
 	string         headingString;              // OUT  - class heading
 	string         endOfProgramString;         // OUT  - end of program statement
-	string         printMainMenuString;
-	string         printInvMenuString;
-	char           choice;
-	string			choiceString;
-	bool           invalidInputBool;
-	bool				keepActive;
-	bool				keepInvMenuActive;
-	bool				keepReportsMenuActive;
-	short          inputPrintHeight;
-	short          inputPrintRow;
-   short          inputPromptHeight;
-	short          inputPromptRow;
-	ostringstream  inputPrompt;
-	string         inputPromptStr;
-	ostringstream  inputPrint;
-	string         inputPrintStr;
-	ostringstream  invalidInput;
-	string			invalidInputStr;
-	ostringstream  pressEnter;
-	string         pressEnterStr;
+	string         printMainMenuString;			 // OUT  - mainmenu print
+	string         printInvMenuString;         // OUT  - invMenu print
+	char           choice;                     // PROC - choice switch selection
+	string			choiceString;               // IN   - input
+	bool           invalidInputBool;           // IN   - error check bool
+	bool				keepActive;                 // PROC - bool for do while main menu
+	bool				keepInvMenuActive;          // PROC - bool for while invMenu()
+	bool				keepReportsMenuActive;      // PROC - bool for while reports()
+
+	short          inputPrintHeight;           // FORM - cursor position
+	short          inputPrintRow;              // FORM - cursor position
+   short          inputPromptHeight;          // FORM - cursor position
+	short          inputPromptRow;             // FORM - cursor position
+
+	ostringstream  inputPrompt;                // PROC - cursor position and prompt stores inputPromptStr
+	string         inputPromptStr;				 // OUT  - input prompt
+
+	ostringstream  inputPrint;                 // PROC - cursor position and input selection print stores in inputPrintStr
+	string         inputPrintStr;              // OUT  - input selection print
+
+	ostringstream  invalidInput;               // PROC - cursor position and error message stores in invalidInputStr
+	string			invalidInputStr;            // OUT  - error message
+
+	ostringstream  pressEnter;                 // PROC - cursor position and press enter prompt stores in pressEnterStr
+	string         pressEnterStr;              // OUT  - press enter prompt
 
 
 	// INITIALIZATIONS
-	headingString       = OutputClassHeading();
-	endOfProgramString  = EndOfProgramBanner();
-	printMainMenuString = PrintMainMenu();
-	printInvMenuString  = PrintInvMenu();
+	headingString         = OutputClassHeading();
+	endOfProgramString    = EndOfProgramBanner();
+	printMainMenuString   = PrintMainMenu();
+	printInvMenuString    = PrintInvMenu();
 
-	keepActive         = true;
-	inputPrintHeight   = 19;
-	inputPrintRow      = 27;
-   inputPromptHeight  = 19;
-	inputPromptRow     = 25;
-	inputPrompt        << "\x1b[" << inputPromptRow << ";" << inputPromptHeight << "H" << setfill(' ') << setw(INPUT_PROMPT.length())
-							 << "\x1b[" << inputPromptRow << ";" << inputPromptHeight << "H" << INPUT_PROMPT;
-	inputPromptStr     = inputPrompt.str();
-	inputPrint         << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
-							 << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INPUT_PRINT;
-	inputPrintStr      = inputPrint.str();
-	invalidInput       << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
-							 << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INVALID_INPUT;
-	invalidInputStr    = invalidInput.str();
-	pressEnter         << "\x1b[31;14H" << "\x1b[5m" << "\x1b[1m" << "\x1b[37m" << "\x1b[44m" << "    Press  E N T E R  to contiue    " << RESET;
-	pressEnterStr      = pressEnter.str();
-
+	keepActive            = true;
 	keepInvMenuActive     = false;
 	keepReportsMenuActive = false;
+
+	inputPrintHeight      = 19;
+	inputPrintRow         = 27;
+   inputPromptHeight     = 19;
+	inputPromptRow        = 25;
+
+	inputPrompt           << "\x1b[" << inputPromptRow << ";" << inputPromptHeight << "H" << setfill(' ') << setw(INPUT_PROMPT.length())
+							    << "\x1b[" << inputPromptRow << ";" << inputPromptHeight << "H" << INPUT_PROMPT;
+	inputPromptStr        = inputPrompt.str();
+
+
+	inputPrint            << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
+							    << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INPUT_PRINT;
+	inputPrintStr         = inputPrint.str();
+
+
+	invalidInput          << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
+							    << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INVALID_INPUT;
+	invalidInputStr      = invalidInput.str();
+
+
+	pressEnter           << "\x1b[31;14H" << "\x1b[5m" << "\x1b[1m" << "\x1b[37m" << "\x1b[44m" << "    Press  E N T E R  to contiue    " << RESET;
+	pressEnterStr        = pressEnter.str();
+
+
 
 
 
@@ -99,15 +113,22 @@ int main()
 		// INPUT - Main Menu Display
 		cout << printMainMenuString;
 
+
+
+
+
+
 		// INPUT - Menu Prompt
 		invalidInputBool = true;
 		choice = 0;
 
 		do
 		{
+			// Input
 			cout << inputPromptStr;
 			getline(cin, choiceString);
 
+			// Clear enter from input buffer
 			while (!choiceString.empty()        &&
 				   ( choiceString.back() == '\r' ||
 					  choiceString.back() == '\n' ||
@@ -117,6 +138,7 @@ int main()
 				choiceString.pop_back();
 			}
 
+			// Error checking
 			if(choiceString.size() == 1 && choiceString[0] >= '1' && choiceString[0] <= '4')
 			{
 				choice = choiceString[0];
@@ -129,35 +151,58 @@ int main()
 
 		} while (invalidInputBool);
 
+
+
+
+
+
 		// Selection statment for menu options
 		switch (choice)
 		{
+			// Cashier
 			case '1':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
+
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 				cashier();
+
 				break;
+
+			// Inventory Menu
 			case '2':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
+
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 				keepInvMenuActive = true;
 				invMenu(keepInvMenuActive);
 				break;
+
+			// Reports Menu
 			case '3':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
+
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 				keepReportsMenuActive = true;
 				reports(keepReportsMenuActive);
 				break;
+
+			// Exit
 			case '4':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
+
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 				keepActive = false;
 				break;
+
+			// Invaild Input
 			default:
 				cout << RED << invalidInputStr << RESET;
 				break;
@@ -165,11 +210,14 @@ int main()
 
 	} while (keepActive);
 
-	// Good bye message
+
+
+	// OUTPUT - Good bye message
 	cout << "\x1b[31;14H" << setfill(' ') << setw(36)   << " ";
 	cout << "\x1b[31;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << " ";
 	cout << "\x1b[32;14H" << "\x1b[30m" << "\x1b[43m" << "     S e e  y o u  l a t e r  : )    ";
 	cout << "\x1b[33;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << "  " << RESET;
+
 
 
 	// OUTPUT - End of Program Banner
