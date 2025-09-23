@@ -98,6 +98,8 @@ int main()
 
 		// INPUT - Main Menu Display
 		cout << printMainMenuString;
+
+		// INPUT - Menu Prompt
 		invalidInputBool = true;
 		choice = 0;
 
@@ -127,6 +129,7 @@ int main()
 
 		} while (invalidInputBool);
 
+		// Selection statment for menu options
 		switch (choice)
 		{
 			case '1':
@@ -162,13 +165,11 @@ int main()
 
 	} while (keepActive);
 
-
-
-	// PROCESSING
-
-	// OUTPUT
-
-
+	// Good bye message
+	cout << "\x1b[31;14H" << setfill(' ') << setw(36)   << " ";
+	cout << "\x1b[31;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << " ";
+	cout << "\x1b[32;14H" << "\x1b[30m" << "\x1b[43m" << "     S e e  y o u  l a t e r  : )    ";
+	cout << "\x1b[33;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << "  " << RESET;
 
 
 	// OUTPUT - End of Program Banner
