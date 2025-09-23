@@ -59,6 +59,9 @@ int main()
 	ostringstream  pressEnter;                 // PROC - cursor position and press enter prompt stores in pressEnterStr
 	string         pressEnterStr;              // OUT  - press enter prompt
 
+	ostringstream  goodByeMessage;				 // PROC - cursor position and good bye message stores in goodByeMessageStr
+	string         goodByeMessageStr;			 // OUT  - good bye message
+
 
 	// INITIALIZATIONS
 	headingString         = OutputClassHeading();
@@ -87,11 +90,17 @@ int main()
 
 	invalidInput          << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
 							    << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INVALID_INPUT;
-	invalidInputStr      = invalidInput.str();
+	invalidInputStr       = invalidInput.str();
 
 
-	pressEnter           << "\x1b[31;14H" << "\x1b[5m" << "\x1b[1m" << "\x1b[37m" << "\x1b[44m" << "    Press  E N T E R  to contiue    " << RESET;
-	pressEnterStr        = pressEnter.str();
+	pressEnter            << "\x1b[31;14H" << "\x1b[5m" << "\x1b[1m" << "\x1b[37m" << "\x1b[44m" << "    Press  E N T E R  to continue    " << RESET;
+	pressEnterStr         = pressEnter.str();
+
+	goodByeMessage        << "\x1b[31;14H" << setfill(' ') << setw(36)   << " "
+		  					    << "\x1b[31;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << " "
+	     					    << "\x1b[32;14H" << "\x1b[30m" << "\x1b[43m" << "     S e e  y o u  l a t e r  : )    "
+	     					 	 << "\x1b[33;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << "  " << RESET;
+	goodByeMessageStr     = goodByeMessage.str();
 
 
 
@@ -213,11 +222,7 @@ int main()
 
 
 	// OUTPUT - Good bye message
-	cout << "\x1b[31;14H" << setfill(' ') << setw(36)   << " ";
-	cout << "\x1b[31;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << " ";
-	cout << "\x1b[32;14H" << "\x1b[30m" << "\x1b[43m" << "     S e e  y o u  l a t e r  : )    ";
-	cout << "\x1b[33;14H" << "\x1b[30m" << "\x1b[43m" << setfill(' ') << setw(37) << "  " << RESET;
-
+	cout << goodByeMessageStr;
 
 
 	// OUTPUT - End of Program Banner

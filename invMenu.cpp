@@ -12,7 +12,10 @@
 
 #include "format.h"
 #include "invMenu.h"
-
+#include "lookUpBook.h"
+#include "addBook.h"
+#include "editBook.h"
+#include "deleteBook.h"
 
 int invMenu (bool &keepInvMenuActive)
 {
@@ -33,20 +36,31 @@ int invMenu (bool &keepInvMenuActive)
 	string         endOfProgramString;         // OUT  - end of program statement
 	string         printInvMenuString;         // OUT  - inventory menu print
 	char           choice;                     // PROC - choice switch selection
-	string			choiceString;      // IN   - input
-	bool           invalidInputBool;
-	short          inputPrintHeight;
-	short          inputPrintRow;
-   short          inputPromptHeight;
-	short          inputPromptRow;
-	ostringstream  inputPrompt;
-	string         inputPromptStr;
-	ostringstream  inputPrint;
-	string         inputPrintStr;
-	ostringstream  invalidInput;
-	string			invalidInputStr;
-	ostringstream  pressEnter;
-	string         pressEnterStr;
+	string			choiceString;     			 // IN   - input
+	bool           invalidInputBool;           // IN   - error check bool
+
+	bool           keepLookUpBookMenuActive;   // PROC - look up book while loop
+	bool           keepAddBookMenuActive;      // PROC - add book while loop
+	bool           keepEditBookMenuActive;     // PROC - edit book while loop
+	bool           keepDeleteBookMenuActive;   // PROC - delete book while loop
+
+	short          inputPrintHeight;           // FORM - cursor position
+	short          inputPrintRow;              // FORM - cursor position
+
+   short          inputPromptHeight;          // FORM - cursor position
+	short          inputPromptRow;             // FORM - cursor position
+
+	ostringstream  inputPrompt;                // PROC - cursor position and prompt stores inputPromptStr
+	string         inputPromptStr;             // OUT  - input prompt
+
+	ostringstream  inputPrint;                 // PROC - cursor position and input selection print stores in inputPrintStr
+	string         inputPrintStr;              // OUT  - input selection print
+
+	ostringstream  invalidInput;               // PROC - cursor position and error message stores in
+	string			invalidInputStr;            // OUT  - error message
+
+	ostringstream  pressEnter;                 // PROC - cursor position and press enter prompt stores in pressEnterStr
+	string         pressEnterStr;              // OUT  - press enter prompt
 
 
 	// INITIALIZATIONS
@@ -54,21 +68,25 @@ int invMenu (bool &keepInvMenuActive)
 	endOfProgramString  = EndOfProgramBanner();
 	printInvMenuString  = PrintInvMenu();
 
-	
+
 	inputPrintHeight   = 19;
 	inputPrintRow      = 28;
    inputPromptHeight  = 19;
 	inputPromptRow     = 26;
+
 	inputPrompt        << "\x1b[" << inputPromptRow << ";" << inputPromptHeight << "H" << setfill(' ') << setw(INPUT_PROMPT.length())
 							 << "\x1b[" << inputPromptRow << ";" << inputPromptHeight << "H" << INPUT_PROMPT;
 	inputPromptStr     = inputPrompt.str();
+
 	inputPrint         << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
 							 << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INPUT_PRINT;
 	inputPrintStr      = inputPrint.str();
+
 	invalidInput       << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << setfill(' ') << setw(INPUT_PRINT_FILL)
 							 << "\x1b[" << inputPrintRow  << ";" << inputPrintHeight  << "H" << INVALID_INPUT;
 	invalidInputStr    = invalidInput.str();
-	pressEnter         << "\x1b[32;14H" << "\x1b[5m" << "\x1b[1m" << "\x1b[37m" << "\x1b[44m" << "    Press  E N T E R  to contiue    " << RESET;
+
+	pressEnter         << "\x1b[32;14H" << "\x1b[5m" << "\x1b[1m" << "\x1b[37m" << "\x1b[44m" << "    Press  E N T E R  to continue    " << RESET;
 	pressEnterStr      = pressEnter.str();
 
 
@@ -98,6 +116,7 @@ int invMenu (bool &keepInvMenuActive)
 			cout << inputPromptStr;
 			getline(cin, choiceString);
 
+			// Cleans input buffer
 			while (!choiceString.empty()        &&
 				   ( choiceString.back() == '\r' ||
 					  choiceString.back() == '\n' ||
@@ -107,6 +126,7 @@ int invMenu (bool &keepInvMenuActive)
 				choiceString.pop_back();
 			}
 
+			// Error checking
 			if(choiceString.size() == 1 && choiceString[0] >= '1' && choiceString[0] <= '5')
 			{
 				choice = choiceString[0];
@@ -119,34 +139,58 @@ int invMenu (bool &keepInvMenuActive)
 
 		} while (invalidInputBool);
 
+		// Selection statement for inventory menu selection
 		switch (choice)
 		{
+			// Look Up Book
 			case '1':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				keepLookUpBookMenuActive = true;
+				lookUpBook(keepInvMenuActive, keepLookUpBookMenuActive);
 				break;
+
+			// Add Book
 			case '2':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				keepAddBookMenuActive = true;
+				addBook(keepInvMenuActive, keepAddBookMenuActive);
 				break;
+
+			// Edit Book
 			case '3':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				keepEditBookMenuActive = true;
+				editBook(keepInvMenuActive, keepEditBookMenuActive);
 				break;
+
+			// Delete Book
 			case '4':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				keepDeleteBookMenuActive = true;
+				deleteBook(keepInvMenuActive, keepDeleteBookMenuActive);
 				break;
+
+			// Exit Return
 			case '5':
 				cout << GREEN << inputPrintStr << choice << "." << RESET;
 				cout << pressEnterStr;
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				keepInvMenuActive = false;
 				break;
+
+			// Error message
 			default:
 				cout << RED << invalidInputStr << RESET;
 				break;
