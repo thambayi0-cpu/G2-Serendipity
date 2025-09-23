@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 
 using namespace std;
@@ -65,6 +66,10 @@ string EndOfProgramBanner
  const short  LINE_LENGTH    = 76);  // IN - border length
 
 string PrintMainMenu();
+
+string PrintInvMenu();
+
+string PrintReportsMenu();
 
 
 #endif
