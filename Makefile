@@ -1,21 +1,20 @@
-run-test: mainmenu.o OutputClassHeading.o OutputStringOfCharacter.o EndOfProgramBanner.o PrintMainMenu.o
-	g++ -std=c++20 -Wall -Werror -o run-test mainmenu.o OutputClassHeading.o OutputStringOfCharacter.o EndOfProgramBanner.o PrintMainMenu.o
+run-test: mainmenu.o format.o cashier.o invMenu.o reports.o
+	g++ -std=c++20 -Wall -Werror -o run-test mainmenu.o format.o cashier.o invMenu.o reports.o
 
-mainmenu.o: mainmenu.cpp mainmenu_header.h
+mainmenu.o: mainmenu.cpp format.h
 	g++ -std=c++20 -Wall -Werror -c mainmenu.cpp
 
-OutputClassHeading.o: OutputClassHeading.cpp mainmenu_header.h
-	g++ -std=c++20 -Wall -Werror -c OutputClassHeading.cpp
+format.o: format.cpp format.h
+	g++ -std=c++20 -Wall -Werror -c format.cpp
 
-OutputStringOfCharacter.o: OutputStringOfCharacter.cpp OutputClassHeading.cpp mainmenu_header.h
-	g++ -std=c++20 -Wall -Werror -c OutputStringOfCharacter.cpp
+cashier.o: cashier.cpp cashier.h
+	g++ -std=c++20 -Wall -Werror -c cashier.cpp
 
-EndOfProgramBanner.o: EndOfProgramBanner.cpp mainmenu_header.h
-	g++ -std=c++20 -Wall -Werror -c EndOfProgramBanner.cpp
+invMenu.o: invMenu.cpp invMenu.h
+	g++ -std=c++20 -Wall -Werror -c invMenu.cpp
 
-PrintMainMenu.o: PrintMainMenu.cpp mainmenu_header.h
-	g++ -std=c++20 -Wall -Werror -c PrintMainMenu.cpp
-
+reports.o: reports.cpp reports.h
+	g++ -std=c++20 -Wall -Werror -c reports.cpp
 
 clean:
 	-rm *.o run-test
