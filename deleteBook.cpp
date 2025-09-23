@@ -13,8 +13,8 @@
 #include "format.h"
 #include "deleteBook.h"
 
-int deleteBook (bool &keepInvMenuActive, bool &keepDeleteBookMenuActive)
+void deleteBook (bool &keepInvMenuActive, bool &keepDeleteBookMenuActive)
 {
-	return 0;
+	
 }
 

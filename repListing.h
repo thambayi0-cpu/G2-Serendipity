@@ -3,6 +3,6 @@
 #ifndef REPLISTING_H
 #define REPLISTING_H
 
-int repLising (bool &keepReportsMenuActive, bool &keepRepListingMenuActive);
+void repListing (bool &keepReportsMenuActive, bool &keepRepListingMenuActive);
 
 #endif

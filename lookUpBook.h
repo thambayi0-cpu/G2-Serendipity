@@ -3,6 +3,6 @@
 #ifndef LOOKUPBOOK_H
 #define LOOKUPBOOK_H
 
-int invMenu(bool &keepInvMenuActive, bool &keepLookUpBookMenuActive);
+void lookUpBook (bool &keepInvMenuActive, bool &keepLookUpBookMenuActive);
 
 #endif

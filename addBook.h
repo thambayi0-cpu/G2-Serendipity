@@ -3,6 +3,6 @@
 #ifndef ADDBOOK_H
 #define ADDBOOK_H
 
-int invMenu(bool &keepInvMenuActive, bool &keepAddBookMenuActive);
+void addBook (bool &keepInvMenuActive, bool &keepAddBookMenuActive);
 
 #endif

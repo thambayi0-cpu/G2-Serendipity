@@ -3,6 +3,6 @@
 #ifndef REPCOST_H
 #define REPCOST_H
 
-int repCost(bool &keepReportsMenuActive, bool &keepRepCostMenuActive);
+void repCost(bool &keepReportsMenuActive, bool &keepRepCostMenuActive);
 
 #endif

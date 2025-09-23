@@ -17,7 +17,7 @@
 #include "editBook.h"
 #include "deleteBook.h"
 
-int invMenu (bool &keepInvMenuActive)
+void invMenu (bool &keepInvMenuActive)
 {
 	// Constants
 	const string INPUT_PROMPT     = "Enter Your Choice: ";
@@ -198,7 +198,5 @@ int invMenu (bool &keepInvMenuActive)
 
 	}
 
-
-	return 0;
 }
 

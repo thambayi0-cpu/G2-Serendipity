@@ -13,8 +13,8 @@
 #include "format.h"
 #include "editBook.h"
 
-int editBook (bool &keepInvMenuActive, bool &keepEditBookMenuActive)
+void editBook (bool &keepInvMenuActive, bool &keepEditBookMenuActive)
 {
-	return 0;
+	
 }
 

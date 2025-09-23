@@ -13,8 +13,8 @@
 #include "format.h"
 #include "repAge.h"
 
-int repAge (bool &keepReportsMenuActive, bool &keepRepAgeMenuActive)
+void repAge (bool &keepReportsMenuActive, bool &keepRepAgeMenuActive)
 {
-	return 0;
+	
 }
 

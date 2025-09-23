@@ -3,6 +3,6 @@
 #ifndef REPQTY_H
 #define REPQTY_H
 
-int repQty (bool &keepReportsMenuActive, bool &keepRepQtyMenuActive);
+void repQty (bool &keepReportsMenuActive, bool &keepRepQtyMenuActive);
 
 #endif

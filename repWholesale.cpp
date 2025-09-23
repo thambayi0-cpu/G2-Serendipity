@@ -13,8 +13,8 @@
 #include "format.h"
 #include "repWholesale.h"
 
-int repWholesale (bool &keepReportsMenuActive, bool &keepRepWholesaletMenuActive)
+void repWholesale (bool &keepReportsMenuActive, bool &keepRepWholesaletMenuActive)
 {
-	return 0;
+	
 }
 

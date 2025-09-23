@@ -13,8 +13,8 @@
 #include "format.h"
 #include "repQty.h"
 
-int repQty (bool &keepReportsMenuActive, bool &keepRepQtytMenuActive)
+void repQty (bool &keepReportsMenuActive, bool &keepRepQtytMenuActive)
 {
-	return 0;
+	
 }
 

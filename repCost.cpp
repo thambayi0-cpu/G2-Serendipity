@@ -1,3 +1,4 @@
+
 /***************************************************************************
 * PROGRAMMED BY : Ahmer Yasin & Thokozile Hambayi
 * ID            : A00349012   & 127485
@@ -13,8 +14,8 @@
 #include "format.h"
 #include "repCost.h"
 
-int repCost (bool &keepReportsMenuActive, bool &keepRepCosttMenuActive)
+void repCost (bool &keepReportsMenuActive, bool &keepRepCosttMenuActive)
 {
-	return 0;
+	
 }
 

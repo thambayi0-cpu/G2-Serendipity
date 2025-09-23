@@ -14,7 +14,7 @@
 #include "reports.h"
 
 
-int reports (bool &keepReportsMenuActive)
+void reports (bool &keepReportsMenuActive)
 {
 	// Constants
 	const string INPUT_PROMPT     = "Enter Your Choice: ";
@@ -222,6 +222,5 @@ int reports (bool &keepReportsMenuActive)
 	}
 
 
-	return 0;
 }
 

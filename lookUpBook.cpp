@@ -13,8 +13,8 @@
 #include "format.h"
 #include "lookUpBook.h"
 
-int lookUpBook (bool &keepInvMenuActive, bool &keepLookUpBookMenuActive)
+void lookUpBook (bool &keepInvMenuActive, bool &keepLookUpBookMenuActive)
 {
-	return 0;
+	
 }
 
