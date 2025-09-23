@@ -1,3 +1,14 @@
+/***************************************************************************
+* PROGRAMMED BY : Ahmer Yasin & Thokozile Hambayi
+* ID            : A00349012   & 127485
+* CLASS         : CS1B
+* SECTION       : TTh 1:30pm
+* MODULE        : 2
+* GROUP PROJECT : 2
+* PROGRAM NAME  : Menus (Navigation & Stubs)
+* PURPOSE       : Bookstore POS
+* DUE DATE      : 09/23/2025
+****************************************************************************/
 
 #include <iostream>
 #include <string>
@@ -24,7 +35,7 @@ void cashier()
 	float subTotal;
 	float total;
 
-	cout << "\033[H\033[2J";
+	cout << "\033[H\033[2J"; //Clear screem
 
 	cout << "Enter Date: ";
 	getline(cin, date);
@@ -34,7 +45,7 @@ void cashier()
 	getline(cin, isbn);
 	cout << "Enter quantity: ";
 	cin >> qty;
-	while (cin.fail())
+	while (cin.fail()) //Test for fail state
 	{
 		cin.clear();
 		cin.ignore(1000, '\n');
@@ -51,7 +62,7 @@ void cashier()
 		cin >> price;
 	}
 
-	if (title.size() > TITLE_WIDTH)
+	if (title.size() > TITLE_WIDTH) // Truncates string if too lomg
 		title = title.substr(0, TITLE_WIDTH - 3) + "[…]";
 	if (isbn.size() > ISBN_WIDTH)
 		isbn = isbn.substr(0, ISBN_WIDTH);
@@ -103,6 +114,8 @@ void cashier()
 	printDash();
 
 	cout << "PRESS ENTER TO CONTINUE";
+
+	cin.ignore(1000, '\n'); //Clears input stream
 
 	cin.get();
 

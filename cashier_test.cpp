@@ -12,5 +12,6 @@ int main()
 	cout << "PRESS ENTER TO CONTINUE";
 	cin.get();
 	cashier();
+	cout << "Thank you!";
 	return 0;
 }
